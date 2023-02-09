@@ -1,22 +1,17 @@
-// create getComputerChoice: randomly selects rock, paper, or scissors
-// this function will choose the computer's play
-// console.log() computer choice before moving onto next step
-
-// create function to play a single round: takes 2 parameters (playerSelection & computerSelection)
-// returns a string that declares the results of the match & why (ie, rock beats scissors)
-// return game results
-
-// create game() and call playRound() insdide of game(); play a 5 round game that keeps score & reports the winner and loser at the end
-
 let playerText = promptChoice();
 let playerSelection = "default";
-playerSelection = validateChoice(playerText);
-let computerChoice = "default";
-// computerChoice = getComputerChoice();
-// game(computerChoice, playerSelection);
+playerSelection = getUserChoice(playerText);
+let computerSelection = "default";
+computerSelection = getComputerChoice();
+let str = playRound(playerSelection, computerSelection);
+console.log("Your choice: " + playerSelection + "\nComputer choice: " + computerSelection + "\n" + str);
+
+// ******** next step ********
+// create game() and call playRound() insdide of game(); play a 5 round game that keeps score & reports the winner and loser at the end
+
 
 // obtains and returns the valid user choice
-function validateChoice(strChoice) {
+function getUserChoice(strChoice) {
     if ( strChoice === "rock" || strChoice === "paper" || strChoice === "scissors") {
         playerSelection = strChoice;
         return playerSelection;
@@ -33,9 +28,8 @@ function promptChoice() {
     return userText;
 }
 
-// helper function for validateChoice
-// if first choice is not valid
-// continues to prompt until valid choice obtained
+// helper function for getUserChoice
+// keep prompting user until valid choice obtained
 function getValidChoice() {
     let validChoice = false;
     while(!validChoice) {
@@ -47,12 +41,34 @@ function getValidChoice() {
     return strChoice;
 }
 
-/* function getComputerChoice () {
-    // use random to select 1 of 3 choices
-    //
-} */
+// uses random to return computer choice
+function getComputerChoice () {
+    let numChoice = Math.floor(Math.random() * 3) + 1;
+    let computerChoice = "default";
+    if (numChoice === 1) {
+        computerChoice = "rock";
+    } else if (numChoice === 2) {
+        computerChoice = "paper";
+    } else { 
+        computerChoice = "scissors"; 
+    }
+    return computerChoice;
+}
 
-/* function game() {
+// compares user and computer choice to determine winner
+function playRound(pSel, cSel) {
+    if ( ((pSel === "rock") && (cSel === "scissors")) || ((pSel === "paper") && (cSel === "rock")) || ((pSel === "scissors") && (cSel === "paper")) ) {
+        return "You win!";
+    } else if (pSel === cSel) {
+        return "It's a tie!";
+    } else {
+        return "You lose...";
+    }
+  }
+
+/* 
+// rtn values from playRound: "You win!" "It's a tie!" "You lose..."
+function game() {
     for (let i=0; i < 5; i++) {
         // CALL playRound() INSIDE OF THIS FUNCTION, COUNT ROUNDS
         // i already increments
@@ -61,12 +77,4 @@ function getValidChoice() {
         // console.log() display winner at then end 
     }
 }
-
-function playRound(playerSelection, computerSelection) {
-    // your code here!
-    // if statements saying which choice wins
-  }
-   
-  //const playerSelection = "rock";
-  const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection));*/
+*/
