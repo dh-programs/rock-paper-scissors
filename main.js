@@ -8,24 +8,43 @@
 
 // create game() and call playRound() insdide of game(); play a 5 round game that keeps score & reports the winner and loser at the end
 
-let playerText = prompt("Type your choice here");
+let playerText = promptChoice();
 let playerSelection = "default";
-validateInput(playerText);
+playerSelection = validateChoice(playerText);
+let computerChoice = "default";
+// computerChoice = getComputerChoice();
+// game(computerChoice, playerSelection);
 
-// ************* NEXT STEPS *************
-// if not, prompt again stating the desired input
-// when correct input received, save playerText to playerSelection variable
-
-// validateInput converts case of user input, sets playerSelection to
-// the input if it's one of the three valid choices
-function validateInput(playerText) {
-    let testText = playerText.toLowerCase();
-    if ( testText === "rock" || testText === "paper" || testText === "scissors") {
-        playerSelection = testText;
+// obtains and returns the valid user choice
+function validateChoice(strChoice) {
+    if ( strChoice === "rock" || strChoice === "paper" || strChoice === "scissors") {
+        playerSelection = strChoice;
         return playerSelection;
     } else {
-        return false;
+        finalChoice = getValidChoice();
+        playerSelection = finalChoice;
+        return playerSelection;
     }
+}
+
+// prompts user for a choice; converts to lowercase
+function promptChoice() {
+    let userText = (prompt("Type your choice here (rock, paper, or scissors)")).toLowerCase();
+    return userText;
+}
+
+// helper function for validateChoice
+// if first choice is not valid
+// continues to prompt until valid choice obtained
+function getValidChoice() {
+    let validChoice = false;
+    while(!validChoice) {
+        strChoice = promptChoice();
+        if (strChoice === "rock" || strChoice === "paper" || strChoice === "scissors") {
+            validChoice = true;
+        }
+    }
+    return strChoice;
 }
 
 /* function getComputerChoice () {
