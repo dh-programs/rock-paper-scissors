@@ -1,14 +1,4 @@
-let playerText = promptChoice();
-let playerSelection = "default";
-playerSelection = getUserChoice(playerText);
-let computerSelection = "default";
-computerSelection = getComputerChoice();
-let str = playRound(playerSelection, computerSelection);
-console.log("Your choice: " + playerSelection + "\nComputer choice: " + computerSelection + "\n" + str);
-
-// ******** next step ********
-// create game() and call playRound() insdide of game(); play a 5 round game that keeps score & reports the winner and loser at the end
-
+game();
 
 // obtains and returns the valid user choice
 function getUserChoice(strChoice) {
@@ -55,8 +45,10 @@ function getComputerChoice () {
     return computerChoice;
 }
 
-// compares user and computer choice to determine winner
-function playRound(pSel, cSel) {
+// gets user & computer choice; determines winner
+function playRound() {
+    let pSel = getUserChoice();
+    let cSel = getComputerChoice();
     if ( ((pSel === "rock") && (cSel === "scissors")) || ((pSel === "paper") && (cSel === "rock")) || ((pSel === "scissors") && (cSel === "paper")) ) {
         return "You win!";
     } else if (pSel === cSel) {
@@ -66,15 +58,22 @@ function playRound(pSel, cSel) {
     }
   }
 
-/* 
-// rtn values from playRound: "You win!" "It's a tie!" "You lose..."
+
+// plays a 5 round game and returns the result
 function game() {
+    let roundResult;
+    let userWins = 0;
+    let computerWins = 0;
     for (let i=0; i < 5; i++) {
-        // CALL playRound() INSIDE OF THIS FUNCTION, COUNT ROUNDS
-        // i already increments
-        // need to keep track of scores & rounds
-        // console.log() display results of each round
-        // console.log() display winner at then end 
+        roundResult = playRound();
+        console.log(roundResult);
+        if ( roundResult === "You win!" ) {
+            userWins++;
+        } else if ( roundResult === "You lose..." ) {
+            computerWins++;
+        }
+        let j = i + 1; 
+        console.log("Rounds played so far: " + j);
     }
+    console.log("Rounds you won: " + userWins + "\nRounds the computer won: " + computerWins);
 }
-*/
