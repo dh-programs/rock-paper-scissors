@@ -1,6 +1,36 @@
-game();
+// display the RUNNING SCORE
+// announce winner once player reaches 5 points
 
-// obtains and returns the valid user choice
+const playerButtons = document.querySelectorAll('.player-choice');
+playerButtons.forEach(button => button.addEventListener('click', playRound));
+//playerButtons.forEach(button => button.addEventListener('click', runningScore));
+// ^^ runs, but only shows computer winning
+// each time playRound is called (each button click), 
+// pass playRound return value into runningScore
+// ** currently runningScore is being called at page load
+// ** and not again when button is pressed
+// ** should not be called UNTIL button is pressed
+// ** and every subsequent click
+
+const container = document.querySelector('#container');
+
+const results = document.createElement('results');
+results.classList.add('results');
+// need to call runningScore and pass into textContent
+results.textContent = 'This will eventually contain results';
+container.appendChild(results);
+
+function buttonToString(btnChoice) {
+    if (btnChoice === "btn-rock") {
+        return "rock";
+    } else if (btnChoice === "btn-paper") {
+        return "paper";
+    } else if (btnChoice === "btn-scissors") {
+        return "scissors";
+    } else return;
+}
+
+// used in old version: obtains & returns valid user choice
 function getUserChoice(strChoice) {
     if ( strChoice === "rock" || strChoice === "paper" || strChoice === "scissors") {
         playerSelection = strChoice;
@@ -32,7 +62,7 @@ function getValidChoice() {
 }
 
 // uses random to return computer choice
-function getComputerChoice () {
+function getComputerChoice() {
     let numChoice = Math.floor(Math.random() * 3) + 1;
     let computerChoice = "default";
     if (numChoice === 1) {
@@ -47,19 +77,42 @@ function getComputerChoice () {
 
 // gets user & computer choice; determines winner
 function playRound() {
-    let pSel = getUserChoice();
-    let cSel = getComputerChoice();
-    if ( ((pSel === "rock") && (cSel === "scissors")) || ((pSel === "paper") && (cSel === "rock")) || ((pSel === "scissors") && (cSel === "paper")) ) {
-        return "You win!";
-    } else if (pSel === cSel) {
-        return "It's a tie!";
+    //console.log("playRound has been called");
+    let btnChoice = this.id;
+    let pChoice = buttonToString(btnChoice);
+    let cChoice = getComputerChoice();
+    if ( ((pChoice === "rock") && (cChoice === "scissors")) || ((pChoice === "paper") && (cChoice === "rock")) || ((pChoice === "scissors") && (cChoice === "paper")) ) {
+        console.log("You won");
+        return "won";
+    } else if (pChoice === cChoice) {
+        console.log("Tie");
+        return "tie";
     } else {
-        return "You lose...";
+        console.log("Computer won");
+        return "lost";
     }
   }
 
+// get return value from playRound
+// call this function & add results to div
+// should this fnctn add results to a const variable OUTSIDE the function??
+function runningScore() {
+    //console.log("runningScore has been called");
+    let userBtn = this.id;
+    let roundResults = playRound(userBtn);
+    //console.log(roundResults);
+    let userWins = 0;
+    let computerWins = 0;
+    if (roundResults === "won") {
+        userWins++;
+        console.log(`user has won ${userWins} times`);
+    } else if(roundResults === "lost") {
+        computerWins++;
+        console.log(`computer has won ${computerWins} times`)
+    } 
+}
 
-// plays a 5 round game and returns the result
+// plays a 5 round game and displays the result
 function game() {
     let roundResult;
     let userWins = 0;
