@@ -1,26 +1,35 @@
-// display the RUNNING SCORE
-// announce winner once player reaches 5 points
+// display the RUNNING SCORE & announce winner 
+// once player or computer reaches 5 points
+// then clear pscore & cscore and start the count over
 
+/*
 const playerButtons = document.querySelectorAll('.player-choice');
 playerButtons.forEach(button => button.addEventListener('click', playRound));
-//playerButtons.forEach(button => button.addEventListener('click', runningScore));
-// ^^ runs, but only shows computer winning
-// each time playRound is called (each button click), 
-// pass playRound return value into runningScore
-// ** currently runningScore is being called at page load
-// ** and not again when button is pressed
-// ** should not be called UNTIL button is pressed
-// ** and every subsequent click
+*/
+
+const buttonImg = document.querySelectorAll('.button-img');
+buttonImg.forEach(img => img.addEventListener('click', playRound));
+
+// need Current Score:
+// You: x Computer: x
+// and then print to div the winner at the end
+const lineBr = document.createElement('br');
+function appendLineBr() {
+    lineBr.classList.add('lineBr');
+    container.appendChild(lineBr);
+}
 
 const container = document.querySelector('#container');
-
-const results = document.createElement('results');
-results.classList.add('results');
-// need to call runningScore and pass into textContent
-results.textContent = 'This will eventually contain results';
-container.appendChild(results);
+function appendResults(gameRes) {
+    let results = document.createElement('results');
+    results.classList.add('results');
+    results.textContent = ` ${gameRes} `;
+    container.appendChild(results);
+}
 
 function buttonToString(btnChoice) {
+    // instead: strip "btn-" from btnChoice
+    // and return that
     if (btnChoice === "btn-rock") {
         return "rock";
     } else if (btnChoice === "btn-paper") {
@@ -75,41 +84,71 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-// gets user & computer choice; determines winner
+// gets user & computer choice; determines winner of round
 function playRound() {
-    //console.log("playRound has been called");
-    let btnChoice = this.id;
-    let pChoice = buttonToString(btnChoice);
+    let pChoice = buttonToString(this.id);
     let cChoice = getComputerChoice();
+    let gameResult = "ERROR";
     if ( ((pChoice === "rock") && (cChoice === "scissors")) || ((pChoice === "paper") && (cChoice === "rock")) || ((pChoice === "scissors") && (cChoice === "paper")) ) {
-        console.log("You won");
-        return "won";
+        gameResult = "won";
+        let gameObject = createGameObject(pChoice, cChoice, gameResult);
+        runningScore(gameResult);
+        return gameObject;
     } else if (pChoice === cChoice) {
-        console.log("Tie");
-        return "tie";
-    } else {
-        console.log("Computer won");
-        return "lost";
-    }
+        gameResult = "tie";
+        let gameObject = createGameObject(pChoice, cChoice, gameResult);
+        runningScore(gameResult);
+        return gameObject;
+    } else if ( ((cChoice === "rock") && (pChoice === "scissors")) || ((cChoice === "paper") && (pChoice === "rock")) || ((cChoice === "scissors") && (pChoice === "paper")) ) {
+        gameResult = "lost";
+        let gameObject = createGameObject(pChoice, cChoice, gameResult);
+        runningScore(gameResult);
+        return gameObject;
+    } else return gameResult;
   }
 
-// get return value from playRound
-// call this function & add results to div
-// should this fnctn add results to a const variable OUTSIDE the function??
-function runningScore() {
-    //console.log("runningScore has been called");
-    let userBtn = this.id;
-    let roundResults = playRound(userBtn);
-    //console.log(roundResults);
-    let userWins = 0;
-    let computerWins = 0;
-    if (roundResults === "won") {
-        userWins++;
-        console.log(`user has won ${userWins} times`);
-    } else if(roundResults === "lost") {
-        computerWins++;
-        console.log(`computer has won ${computerWins} times`)
-    } 
+
+function createGameObject(pChoice, cChoice, gameResult) {
+    let gameObject = {
+        pChoice: pChoice,
+        cChoice: cChoice,
+        gameResult: gameResult
+    }
+    return gameObject;
+}
+
+// run while loop OUTSIDE of runningScore
+// nest runningScore inside while loop??
+// find another way to just use runningScore
+let userWins = 0;
+let computerWins = 0;
+function runningScore(roundResult) {
+    if (userWins === 5 && computerWins < 5) {
+        userWins = 0;
+        computerWins = 0;
+        appendResults('You reached 5 points first; you won!!');
+        appendLineBr();
+    } else if (computerWins === 5 && userWins < 5) {
+        userWins = 0;
+        computerWins = 0;
+        appendResults('You lost this game.');
+        appendLineBr();
+    } else if (computerWins === 5 && userWins === 5) {
+        userWins = 0;
+        computerWins = 0;
+        appendResults('This game was a tie.');
+        appendLineBr();
+    } else if (userWins < 5 && computerWins < 5) {
+        if (roundResult === "won") {
+            userWins++;
+            appendResults(roundResult);
+        } else if (roundResult === "lost") {
+            computerWins++;
+            appendResults(roundResult);
+        } else if (roundResult === "tie") {
+            appendResults(roundResult);
+        }
+    }
 }
 
 // plays a 5 round game and displays the result

@@ -4,14 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="shortcut icon" href="#">
 </head>
 
 <body>
   <script src="main.js" defer></script>
-  <button id="btn-rock" class="player-choice" >Rock</button>
-  <button id="btn-paper" class="player-choice" >Paper</button>
-  <button id="btn-scissors" class="player-choice" >Scissors</button>
+
+  <div class="header">
+    <p>Rock Paper Scissors</p>
+    <p>need to attribute images</p>
+  </div>  
+
+  <div class="choice-buttons">  
+    <!--<button id="btn-rock" class="player-choice">Rock</button>
+    <button id="btn-paper" class="player-choice">Paper</button>
+    <button id="btn-scissors" class="player-choice">Scissors</button>-->  
+    <div class="img-choice"><img src="images/mineral.png" alt="Rock" class="button-img"/></div>
+    <div class="img-choice"><img src="images/parchment.png" alt="Paper" class="button-img"/></div>
+    <div class="img-choice"><img src="images/scissors.png" alt="Scissors" class="button-img"/></div>
+  </div>
+
   <div id="container"></div>
+
 </body>
 </html>
