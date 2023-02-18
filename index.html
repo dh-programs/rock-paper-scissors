@@ -11,18 +11,27 @@
 <body>
   <script src="main.js" defer></script>
 
-  <div class="header">
-    <p>Rock Paper Scissors</p>
-    <p>need to attribute images</p>
-  </div>  
+  <div class="header">Rock Paper Scissors</div>  
 
-  <div class="choice-buttons">  
-    <!--<button id="btn-rock" class="player-choice">Rock</button>
-    <button id="btn-paper" class="player-choice">Paper</button>
-    <button id="btn-scissors" class="player-choice">Scissors</button>-->  
-    <div class="img-choice"><img src="images/mineral.png" alt="Rock" class="button-img"/></div>
-    <div class="img-choice"><img src="images/parchment.png" alt="Paper" class="button-img"/></div>
-    <div class="img-choice"><img src="images/scissors.png" alt="Scissors" class="button-img"/></div>
+  <div class="choice-buttons">
+    <div class="img-choice">
+      <button class="player-btn" id="btn-rock"><img src="images/mineral.png" alt="Rock" class="img-btn"/></button>
+      <div class="attribution"><a href="https://www.flaticon.com/free-icons/mineral" title="mineral icons" 
+        target="_blank" rel="noreferrer noopener">Mineral icons created by Freepik - Flaticon</a>
+      </div>
+    </div>
+
+    <div class="img-choice">
+      <button class="player-btn" id="btn-paper"><img src="images/parchment.png" alt="Paper" class="img-btn"/></button>
+      <div class="attribution"><a  href="https://www.flaticon.com/free-icons/cute" title="cute icons" 
+        target="_blank" rel="noreferrer noopener">Cute icons created by Freepik - Flaticon</a></div>
+    </div>
+
+    <div class="img-choice">
+      <button class="player-btn" id="btn-scissors"><img src="images/scissors.png" alt="Scissors" class="img-btn"/></button>
+      <div class="attribution"><a href="https://www.flaticon.com/free-icons/scissors" title="scissors icons" 
+        target="_blank" rel="noreferrer noopener">Scissors icons created by Freepik - Flaticon</a></div>
+    </div>
   </div>
 
   <div id="container"></div>

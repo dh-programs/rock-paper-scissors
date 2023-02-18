@@ -1,11 +1,22 @@
+@font-face {
+    font-family: CabinSketch;
+    src: url(fonts/CabinSketch-Regular.ttf);
+}
+
+@font-face {
+    font-family: CabinSketch;
+    src: url(fonts/CabinSketch-Bold.ttf);
+    font-weight: bold;
+  }
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     height: 100vh;
     margin: 0;
     background-color: rgb(194, 255, 235);
+    font-family: CabinSketch, sans-serif;
 }
 
 .header {
@@ -13,8 +24,23 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: blueviolet;
     width: 100%;
+    padding: 20px;
+    font-size: 100px;
+    font-weight: bold;
+    color:rgb(138, 209, 185);
+}
+
+.player-btn {
+    background: none;
+    border: none;
+}
+
+.img-btn {
+    max-width: 250px;
+    max-height: 250px;
+    width: auto;
+    height: auto;
 }
 
 .choice-buttons {
@@ -22,12 +48,19 @@ body {
 }
 
 .img-choice {
-    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
 }
 
-.button-img {
-    max-width: 200px;
-    max-height: 200px;
-    width: auto;
-    height: auto;
+.attribution {
+    max-width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    color: rgb(154, 213, 193);
+    text-decoration: none;
+    font-size: 12px;
 }

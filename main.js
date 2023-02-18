@@ -1,31 +1,28 @@
-// display the RUNNING SCORE & announce winner 
-// once player or computer reaches 5 points
+// announce winner once player or computer reaches 5 points
 // then clear pscore & cscore and start the count over
 
-/*
-const playerButtons = document.querySelectorAll('.player-choice');
-playerButtons.forEach(button => button.addEventListener('click', playRound));
-*/
+const container = document.querySelector('#container');
+let results = document.createElement('div');
+results.classList.add('div');
+container.appendChild(results);
 
-const buttonImg = document.querySelectorAll('.button-img');
-buttonImg.forEach(img => img.addEventListener('click', playRound));
-
-// need Current Score:
-// You: x Computer: x
-// and then print to div the winner at the end
-const lineBr = document.createElement('br');
-function appendLineBr() {
-    lineBr.classList.add('lineBr');
-    container.appendChild(lineBr);
+function setTextContent(userScore, compScore) {
+    results.textContent = `Your wins: ${userScore}, computer wins: ${compScore}`;
 }
 
-const container = document.querySelector('#container');
+const playerBtn = document.querySelectorAll('.player-btn');
+playerBtn.forEach(btn => btn.addEventListener('click', playRound));
+
+// then print to div the winner at the end
+// then clear the win/loss announcement
+// score should already be reset
+/*const container = document.querySelector('#container');
 function appendResults(gameRes) {
     let results = document.createElement('results');
     results.classList.add('results');
     results.textContent = ` ${gameRes} `;
     container.appendChild(results);
-}
+}*/
 
 function buttonToString(btnChoice) {
     // instead: strip "btn-" from btnChoice
@@ -117,36 +114,36 @@ function createGameObject(pChoice, cChoice, gameResult) {
     return gameObject;
 }
 
-// run while loop OUTSIDE of runningScore
-// nest runningScore inside while loop??
-// find another way to just use runningScore
 let userWins = 0;
 let computerWins = 0;
 function runningScore(roundResult) {
     if (userWins === 5 && computerWins < 5) {
+        setTextContent(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        appendResults('You reached 5 points first; you won!!');
-        appendLineBr();
+        //appendResults('You reached 5 points first; you won!!');
     } else if (computerWins === 5 && userWins < 5) {
+        setTextContent(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        appendResults('You lost this game.');
-        appendLineBr();
+        //appendResults('You lost this game.');
     } else if (computerWins === 5 && userWins === 5) {
+        setTextContent(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        appendResults('This game was a tie.');
-        appendLineBr();
+        //appendResults('This game was a tie.');
     } else if (userWins < 5 && computerWins < 5) {
         if (roundResult === "won") {
             userWins++;
-            appendResults(roundResult);
+            setTextContent(userWins, computerWins);
+            //appendResults(roundResult);
         } else if (roundResult === "lost") {
             computerWins++;
-            appendResults(roundResult);
+            setTextContent(userWins, computerWins);
+            //appendResults(roundResult);
         } else if (roundResult === "tie") {
-            appendResults(roundResult);
+            setTextContent(userWins, computerWins);
+            //appendResults(roundResult);
         }
     }
 }
