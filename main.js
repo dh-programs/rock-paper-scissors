@@ -1,28 +1,35 @@
-// announce winner once player or computer reaches 5 points
-// then clear pscore & cscore and start the count over
+// add another div that shows the computer choice
+// each round and displays the correct image
 
 const container = document.querySelector('#container');
-let results = document.createElement('div');
-results.classList.add('div');
-container.appendChild(results);
+let roundResults = document.createElement('div');
+roundResults.classList.add('div');
+container.appendChild(roundResults);
 
-function setTextContent(userScore, compScore) {
-    results.textContent = `Your wins: ${userScore}, computer wins: ${compScore}`;
+let gameResults = document.createElement('div');
+gameResults.classList.add('div');
+container.appendChild(gameResults);
+
+function printScore(userScore, compScore) {
+    roundResults.textContent = `You: ${userScore}, computer: ${compScore}`;
 }
+
+function printGameResult(gameResult) {
+    gameResults.textContent = `${gameResult}`;
+}
+
+function clearGameResult() {
+    gameResults.textContent = '';
+}
+
+// need to create "clearChoiceImg"
+// should clear the question mark icon
+// need to create "displayChoiceImg"
+// should display the user & computer choice
+// in the same div that ? are currently displayed
 
 const playerBtn = document.querySelectorAll('.player-btn');
 playerBtn.forEach(btn => btn.addEventListener('click', playRound));
-
-// then print to div the winner at the end
-// then clear the win/loss announcement
-// score should already be reset
-/*const container = document.querySelector('#container');
-function appendResults(gameRes) {
-    let results = document.createElement('results');
-    results.classList.add('results');
-    results.textContent = ` ${gameRes} `;
-    container.appendChild(results);
-}*/
 
 function buttonToString(btnChoice) {
     // instead: strip "btn-" from btnChoice
@@ -118,32 +125,32 @@ let userWins = 0;
 let computerWins = 0;
 function runningScore(roundResult) {
     if (userWins === 5 && computerWins < 5) {
-        setTextContent(userWins, computerWins);
+        printScore(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        //appendResults('You reached 5 points first; you won!!');
+        printGameResult("You won this game!");
     } else if (computerWins === 5 && userWins < 5) {
-        setTextContent(userWins, computerWins);
+        printScore(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        //appendResults('You lost this game.');
+        printGameResult("The computer won this game.");
     } else if (computerWins === 5 && userWins === 5) {
-        setTextContent(userWins, computerWins);
+        printScore(userWins, computerWins);
         userWins = 0;
         computerWins = 0;
-        //appendResults('This game was a tie.');
+        printGameResult("It's a tie.");
     } else if (userWins < 5 && computerWins < 5) {
         if (roundResult === "won") {
             userWins++;
-            setTextContent(userWins, computerWins);
-            //appendResults(roundResult);
+            printScore(userWins, computerWins);
+            clearGameResult();
         } else if (roundResult === "lost") {
             computerWins++;
-            setTextContent(userWins, computerWins);
-            //appendResults(roundResult);
+            printScore(userWins, computerWins);
+            clearGameResult();
         } else if (roundResult === "tie") {
-            setTextContent(userWins, computerWins);
-            //appendResults(roundResult);
+            printScore(userWins, computerWins);
+            clearGameResult();
         }
     }
 }

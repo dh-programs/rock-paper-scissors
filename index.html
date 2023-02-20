@@ -10,31 +10,44 @@
 
 <body>
   <script src="main.js" defer></script>
-
+  
   <div class="header">Rock Paper Scissors</div>  
 
-  <div class="choice-buttons">
-    <div class="img-choice">
-      <button class="player-btn" id="btn-rock"><img src="images/mineral.png" alt="Rock" class="img-btn"/></button>
-      <div class="attribution"><a href="https://www.flaticon.com/free-icons/mineral" title="mineral icons" 
-        target="_blank" rel="noreferrer noopener">Mineral icons created by Freepik - Flaticon</a>
+  <div class="content">
+    <div class="choice-buttons">
+      <div class="img-choice">
+        <button class="player-btn" id="btn-rock"><img src="images/crystals.png" alt="Rock" class="img-btn"/></button>
+        <div class="attribution"><a href="https://www.flaticon.com/free-icons/minerals" title="mineral icons" 
+          target="_blank" rel="noreferrer noopener">Icon by Freepik - Flaticon</a>
+        </div>
+      </div>
+
+      <div class="img-choice">
+        <button class="player-btn" id="btn-paper"><img src="images/parchment.png" alt="Paper" class="img-btn"/></button>
+        <div class="attribution"><a  href="https://www.flaticon.com/free-icons/cute" title="cute icons" 
+          target="_blank" rel="noreferrer noopener">Icon by Freepik - Flaticon</a></div>
+      </div>
+
+      <div class="img-choice">
+        <button class="player-btn" id="btn-scissors"><img src="images/scissors.png" alt="Scissors" class="img-btn"/></button>
+        <div class="attribution"><a href="https://www.flaticon.com/free-icons/scissors" title="scissors icons" 
+          target="_blank" rel="noreferrer noopener">Icon by Freepik - Flaticon</a></div>
       </div>
     </div>
 
-    <div class="img-choice">
-      <button class="player-btn" id="btn-paper"><img src="images/parchment.png" alt="Paper" class="img-btn"/></button>
-      <div class="attribution"><a  href="https://www.flaticon.com/free-icons/cute" title="cute icons" 
-        target="_blank" rel="noreferrer noopener">Cute icons created by Freepik - Flaticon</a></div>
-    </div>
-
-    <div class="img-choice">
-      <button class="player-btn" id="btn-scissors"><img src="images/scissors.png" alt="Scissors" class="img-btn"/></button>
-      <div class="attribution"><a href="https://www.flaticon.com/free-icons/scissors" title="scissors icons" 
-        target="_blank" rel="noreferrer noopener">Scissors icons created by Freepik - Flaticon</a></div>
+    <div id="choice-display" class="results-display">
+      <div class="wrapped">
+        <div class="wrapped-choice">
+          <div class="wrapped">Your choice<img src="images/information.png" class="show-choice"/></div>
+          <div class="wrapped">Computer choice<img src="images/information.png" class="show-choice"/></div>
+        </div>
+      </div>
+      <div id="container" class="wrapped">Score</div>
     </div>
   </div>
 
-  <div id="container"></div>
-
+  <div class="footer">All icons by Freepik - Flaticon
+    <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Freepik - Flaticon</a>
+  </div>
 </body>
 </html>

@@ -14,9 +14,56 @@ body {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: rgb(194, 255, 235);
+    max-width: 1000px;
+    margin: 0px auto;
+    background-color: rgb(20, 103, 99);
     font-family: CabinSketch, sans-serif;
+    color:rgb(138, 209, 185);
+    font-size: 26px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    margin: 0px auto;
+}
+
+.wrapped {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.wrapped-choice {
+    display: flex;
+}
+
+.show-choice {
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    padding: 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    min-width: 300px;
+}
+
+#choice-display {
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    border-style: groove;
+    border-radius: 15px;
+    border-color:rgb(138, 209, 185);
 }
 
 .header {
@@ -25,10 +72,10 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 20px;
-    font-size: 100px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 90px;
     font-weight: bold;
-    color:rgb(138, 209, 185);
 }
 
 .player-btn {
@@ -37,8 +84,8 @@ body {
 }
 
 .img-btn {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 160px;
+    max-height: 200px;
     width: auto;
     height: auto;
 }
@@ -63,4 +110,10 @@ a {
     color: rgb(154, 213, 193);
     text-decoration: none;
     font-size: 12px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
 }
