@@ -1,6 +1,3 @@
-// add another div that shows the computer choice
-// each round and displays the correct image
-
 const container = document.querySelector('#container');
 let roundResults = document.createElement('div');
 roundResults.classList.add('div');
@@ -9,6 +6,9 @@ container.appendChild(roundResults);
 let gameResults = document.createElement('div');
 gameResults.classList.add('div');
 container.appendChild(gameResults);
+
+let computerChoiceImg = document.querySelector('#computer-choice-img');
+let userChoiceImg = document.querySelector('#user-choice-img');
 
 function printScore(userScore, compScore) {
     roundResults.textContent = `You: ${userScore}, computer: ${compScore}`;
@@ -22,11 +22,40 @@ function clearGameResult() {
     gameResults.textContent = '';
 }
 
-// need to create "clearChoiceImg"
-// should clear the question mark icon
-// need to create "displayChoiceImg"
-// should display the user & computer choice
-// in the same div that ? are currently displayed
+function clearImg() {
+    userChoiceImg.textContent = '';
+    computerChoiceImg.textContent = '';
+}
+
+let rockSrc = 'images/crystals.png';
+let paperSrc = 'images/parchment.png';
+let scissorsSrc = 'images/scissors.png';
+let rockImg = document.createElement("IMG");
+rockImg.src = rockSrc;
+let paperImg = document.createElement("IMG");
+paperImg.src = paperSrc;
+let scissorsImg = document.createElement("IMG");
+scissorsImg.src = scissorsSrc;
+
+function displayUserChoice(userChoice) {
+    if (userChoice === "rock") {
+        userChoiceImg.append(rockImg);
+    } else if (userChoice === "paper") {
+        userChoiceImg.append(paperImg);
+    } else if (userChoice === "scissors") {
+        userChoiceImg.append(scissorsImg);
+    }
+}
+
+function displayComputerChoice(computerChoice) {
+    if(computerChoice === "rock") {
+        computerChoiceImg.append(rockImg);
+    } else if (computerChoice === "paper") {
+        computerChoiceImg.append(paperImg);
+    } else if (computerChoice === "scissors") {
+        computerChoiceImg.append(scissorsImg);
+    }
+}
 
 const playerBtn = document.querySelectorAll('.player-btn');
 playerBtn.forEach(btn => btn.addEventListener('click', playRound));
@@ -97,16 +126,25 @@ function playRound() {
         gameResult = "won";
         let gameObject = createGameObject(pChoice, cChoice, gameResult);
         runningScore(gameResult);
+        clearImg();
+        displayUserChoice(pChoice);
+        displayComputerChoice(cChoice);
         return gameObject;
     } else if (pChoice === cChoice) {
         gameResult = "tie";
         let gameObject = createGameObject(pChoice, cChoice, gameResult);
         runningScore(gameResult);
+        clearImg();
+        displayUserChoice(pChoice);
+        displayComputerChoice(cChoice);
         return gameObject;
     } else if ( ((cChoice === "rock") && (pChoice === "scissors")) || ((cChoice === "paper") && (pChoice === "rock")) || ((cChoice === "scissors") && (pChoice === "paper")) ) {
         gameResult = "lost";
         let gameObject = createGameObject(pChoice, cChoice, gameResult);
         runningScore(gameResult);
+        clearImg();
+        displayUserChoice(pChoice);
+        displayComputerChoice(cChoice);
         return gameObject;
     } else return gameResult;
   }

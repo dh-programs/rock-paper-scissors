@@ -39,6 +39,13 @@ body {
 
 .wrapped-choice {
     display: flex;
+    padding: 30px;
+}
+
+.choices-dispay-div {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
 }
 
 .show-choice {
@@ -64,6 +71,22 @@ body {
     border-style: groove;
     border-radius: 15px;
     border-color:rgb(138, 209, 185);
+}
+
+#user-choice-img {
+    display: flex;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+#computer-choice-img {
+    display: flex;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
 }
 
 .header {
