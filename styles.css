@@ -81,6 +81,10 @@ body {
     height: auto;
 }
 
+.img-choice:hover .player-btn {
+    opacity: 0.5;
+}
+
 #computer-choice-img {
     display: flex;
     max-width: 100px;

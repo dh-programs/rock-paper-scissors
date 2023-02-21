@@ -30,11 +30,11 @@ function clearImg() {
 let rockSrc = 'images/crystals.png';
 let paperSrc = 'images/parchment.png';
 let scissorsSrc = 'images/scissors.png';
-let rockImg = document.createElement("IMG");
+let rockImg = document.createElement('IMG');
 rockImg.src = rockSrc;
-let paperImg = document.createElement("IMG");
+let paperImg = document.createElement('IMG');
 paperImg.src = paperSrc;
-let scissorsImg = document.createElement("IMG");
+let scissorsImg = document.createElement('IMG');
 scissorsImg.src = scissorsSrc;
 
 let rockSrcUser = 'images/crystals-user.png';
@@ -71,13 +71,8 @@ const playerBtn = document.querySelectorAll('.player-btn');
 playerBtn.forEach(btn => btn.addEventListener('click', playRound));
 
 function buttonToString(btnChoice) {
-    if (btnChoice === "btn-rock") {
-        return "rock";
-    } else if (btnChoice === "btn-paper") {
-        return "paper";
-    } else if (btnChoice === "btn-scissors") {
-        return "scissors";
-    } else return;
+    btnString = btnChoice.split('-')[1];
+    return btnString;
 }
 
 // used in old version: obtains & returns valid user choice
@@ -92,14 +87,13 @@ function getUserChoice(strChoice) {
     }
 }
 
-// prompts user for a choice; converts to lowercase
+// used in old version: prompts user for a choice; converts to lowercase
 function promptChoice() {
     let userText = (prompt("Type your choice here (rock, paper, or scissors)")).toLowerCase();
     return userText;
 }
 
-// helper function for getUserChoice
-// keep prompting user until valid choice obtained
+// used in old version: prompts until valid user choice obtained
 function getValidChoice() {
     let validChoice = false;
     while(!validChoice) {
@@ -201,17 +195,17 @@ function runningScore(roundResult) {
     }
 }
 
-// plays a 5 round game and displays the result
+// used in old version: plays a 5 round game and displays the result
 function game() {
-    let roundResult;
+    let fiveRoundResult;
     let userWins = 0;
     let computerWins = 0;
     for (let i=0; i < 5; i++) {
-        roundResult = playRound();
-        console.log(roundResult);
-        if ( roundResult === "You win!" ) {
+        fiveRoundResult = playRound();
+        console.log(fiveRoundResult);
+        if ( fiveRoundResult === "You win!" ) {
             userWins++;
-        } else if ( roundResult === "You lose..." ) {
+        } else if ( fiveRoundResult === "You lose..." ) {
             computerWins++;
         }
         let j = i + 1; 
