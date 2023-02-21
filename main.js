@@ -37,13 +37,23 @@ paperImg.src = paperSrc;
 let scissorsImg = document.createElement("IMG");
 scissorsImg.src = scissorsSrc;
 
+let rockSrcUser = 'images/crystals-user.png';
+let paperSrcUser = 'images/parchment-user.png';
+let scissorsSrcUser = 'images/scissors-user.png';
+let rockImgUser = document.createElement('IMG');
+rockImgUser.src = rockSrcUser;
+let paperImgUser = document.createElement('IMG');
+paperImgUser.src = paperSrcUser;
+let scissorsImgUser = document.createElement('IMG');
+scissorsImgUser.src = scissorsSrcUser;
+
 function displayUserChoice(userChoice) {
     if (userChoice === "rock") {
-        userChoiceImg.append(rockImg);
+        userChoiceImg.append(rockImgUser);
     } else if (userChoice === "paper") {
-        userChoiceImg.append(paperImg);
+        userChoiceImg.append(paperImgUser);
     } else if (userChoice === "scissors") {
-        userChoiceImg.append(scissorsImg);
+        userChoiceImg.append(scissorsImgUser);
     }
 }
 
@@ -61,8 +71,6 @@ const playerBtn = document.querySelectorAll('.player-btn');
 playerBtn.forEach(btn => btn.addEventListener('click', playRound));
 
 function buttonToString(btnChoice) {
-    // instead: strip "btn-" from btnChoice
-    // and return that
     if (btnChoice === "btn-rock") {
         return "rock";
     } else if (btnChoice === "btn-paper") {
@@ -164,19 +172,19 @@ let computerWins = 0;
 function runningScore(roundResult) {
     if (userWins === 5 && computerWins < 5) {
         printScore(userWins, computerWins);
+        printGameResult("You won this game!");
         userWins = 0;
         computerWins = 0;
-        printGameResult("You won this game!");
     } else if (computerWins === 5 && userWins < 5) {
         printScore(userWins, computerWins);
+        printGameResult("The computer won this game.");
         userWins = 0;
         computerWins = 0;
-        printGameResult("The computer won this game.");
     } else if (computerWins === 5 && userWins === 5) {
         printScore(userWins, computerWins);
+        printGameResult("It's a tie.");
         userWins = 0;
         computerWins = 0;
-        printGameResult("It's a tie.");
     } else if (userWins < 5 && computerWins < 5) {
         if (roundResult === "won") {
             userWins++;
