@@ -27,6 +27,7 @@ body {
     flex-direction: column;
     flex: 1;
     align-items: center;
+    justify-content: center;
     margin: 0px auto;
 }
 
@@ -75,8 +76,8 @@ body {
 
 #user-choice-img {
     display: flex;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 120px;
+    max-height: 120px;
     width: auto;
     height: auto;
 }
@@ -87,8 +88,8 @@ body {
 
 #computer-choice-img {
     display: flex;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 120px;
+    max-height: 120px;
     width: auto;
     height: auto;
 }
@@ -111,8 +112,8 @@ body {
 }
 
 .img-btn {
-    max-width: 160px;
-    max-height: 200px;
+    max-width: 210px;
+    max-height: 210px;
     width: auto;
     height: auto;
 }

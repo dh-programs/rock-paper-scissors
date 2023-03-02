@@ -1,10 +1,10 @@
 const container = document.querySelector('#container');
 let roundResults = document.createElement('div');
-roundResults.classList.add('div');
+roundResults.classList.add('results-div');
 container.appendChild(roundResults);
 
 let gameResults = document.createElement('div');
-gameResults.classList.add('div');
+gameResults.classList.add('results-div');
 container.appendChild(gameResults);
 
 let computerChoiceImg = document.querySelector('#computer-choice-img');
